@@ -20,14 +20,14 @@ class Main {
         Map<Pair<Integer, Integer>, Integer> result = new HashMap<>();
         int max = 0;
         for (String verse : verses) {
-            Integer pairKey = hash(verse, firstPrime);
-            Integer pairValue = hash(verse, secondPrime);
+            Integer firstHash = hash(verse, firstPrime);
+            Integer secondHash = hash(verse, secondPrime);
             if (result.isEmpty()) {
-                result.put(new Pair<>(pairKey, pairValue), 1);
+                result.put(new Pair<>(firstHash, secondHash), 1);
             } else {
                 boolean updated = false;
                 for (Pair<Integer, Integer> pair : result.keySet()) {
-                    if (pair.getKey().equals(pairKey) || pair.getValue().equals(pairValue)) {
+                    if (pair.getKey().equals(firstHash) || pair.getValue().equals(secondHash)) {
                         int incrementedValue = result.get(pair) + 1;
                         result.put(pair, incrementedValue);
                         max = Math.max(incrementedValue, max);
@@ -37,7 +37,7 @@ class Main {
                 // Daca nu exista in tot keySet ul atunci adaug
                 // NU: Daca nu exista o valoare o adaug, din cauza asta nu e if else
                 if (!updated) {
-                    result.put(new Pair<>(pairKey, pairValue), 1);
+                    result.put(new Pair<>(firstHash, secondHash), 1);
                 }
             }
         }
