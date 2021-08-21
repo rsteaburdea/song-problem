@@ -21,12 +21,12 @@ class Main {
         int maxNumberOfOccurrences = 0;
         for (String verse : verses) {
             Pair<Integer, Integer> pair = new Pair<>(hash(verse, firstPrime), hash(verse, secondPrime));
-            if (result.containsKey(pair)) {
+            if (!result.containsKey(pair)) {
+                result.put(pair, 1);
+            } else {
                 int incrementedValue = result.get(pair) + 1;
                 result.put(pair, incrementedValue);
                 maxNumberOfOccurrences = Math.max(incrementedValue, maxNumberOfOccurrences);
-            } else {
-                result.put(pair, 1);
             }
         }
         return new Pair<>(result, maxNumberOfOccurrences);
