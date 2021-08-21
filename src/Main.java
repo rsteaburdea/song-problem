@@ -20,9 +20,7 @@ class Main {
         Map<Pair<Integer, Integer>, Integer> result = new HashMap<>();
         int maxNumberOfOccurrences = 0;
         for (String verse : verses) {
-            Integer firstHash = hash(verse, firstPrime);
-            Integer secondHash = hash(verse, secondPrime);
-            Pair<Integer, Integer> pair = new Pair<>(firstHash, secondHash);
+            Pair<Integer, Integer> pair = new Pair<>(hash(verse, firstPrime), hash(verse, secondPrime));
             if (result.containsKey(pair)) {
                 int incrementedValue = result.get(pair) + 1;
                 result.put(pair, incrementedValue);
@@ -48,9 +46,7 @@ class Main {
             }
         });
         for (String verse : verses) {
-            Integer firstHash = hash(verse, firstPrime);
-            Integer secondHash = hash(verse, secondPrime);
-            Pair<Integer, Integer> pair = new Pair<>(firstHash, secondHash);
+            Pair<Integer, Integer> pair = new Pair<>(hash(verse, firstPrime), hash(verse, secondPrime));
             if (maxNumberOfOccurrenceHashes.contains(pair)) {
                 System.out.println(verse);
                 maxNumberOfOccurrenceHashes.remove(pair);
