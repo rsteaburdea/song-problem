@@ -22,23 +22,13 @@ class Main {
         for (String verse : verses) {
             Integer firstHash = hash(verse, firstPrime);
             Integer secondHash = hash(verse, secondPrime);
-            if (result.isEmpty()) {
-                result.put(new Pair<>(firstHash, secondHash), 1);
+            Pair<Integer, Integer> pair = new Pair<>(firstHash, secondHash);
+            if (result.containsKey(pair)) {
+                int incrementedValue = result.get(pair) + 1;
+                result.put(pair, incrementedValue);
+                max = Math.max(incrementedValue, max);
             } else {
-                boolean updated = false;
-                for (Pair<Integer, Integer> pair : result.keySet()) {
-                    if (pair.getKey().equals(firstHash) || pair.getValue().equals(secondHash)) {
-                        int incrementedValue = result.get(pair) + 1;
-                        result.put(pair, incrementedValue);
-                        max = Math.max(incrementedValue, max);
-                        updated = true;
-                    }
-                }
-                // Daca nu exista in tot keySet ul atunci adaug
-                // NU: Daca nu exista o valoare o adaug, din cauza asta nu e if else
-                if (!updated) {
-                    result.put(new Pair<>(firstHash, secondHash), 1);
-                }
+                result.put(pair, 1);
             }
         }
         return new Pair<>(result, max);
@@ -73,8 +63,8 @@ class Main {
         System.out.println(hash("alan da", 3));
         System.out.println(hash("alan da", 2));
         System.out.println(listToMap(Arrays.asList("salut",
-                "ce faci", "salut", "ana", "ce faci", "salut", "hello", "ce faci"), 2, 3));
+                "ce faci", "salut", "ana", "ce faci", "salut", "hello", "ce faci", "ana"), 2, 3));
         getMaxNumberOfOccurrences(Arrays.asList("salut",
-                "ce faci", "salut", "ana", "ce faci", "salut", "hello", "ce faci"), 2, 3);
+                "ce faci", "salut", "ana", "ce faci", "salut", "hello", "ce faci", "ana"), 2, 3);
     }
 }
