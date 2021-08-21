@@ -7,7 +7,7 @@ class Main {
         int sum = 0;
         char[] lyricAsChar = lyric.toCharArray();
         for (int i = 0; i < lyric.length(); i++) {
-            sum += (lyricAsChar[i] % 64 * Math.pow(prime, i)) % Integer.MAX_VALUE;
+            sum += (lyricAsChar[i] % 64 * (prime * (i + 1))) % Integer.MAX_VALUE;
             sum %= Integer.MAX_VALUE;
         }
         return sum;
