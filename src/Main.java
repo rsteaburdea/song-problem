@@ -3,14 +3,11 @@ import javafx.util.Pair;
 import java.util.*;
 
 class Main {
-    private static int pow(int n, int p, int acc) {
-        return p == 0 ? acc : pow(n, --p, acc * n);
-    }
     private static int hash(String verse, Integer prime) {
         int sum = 0;
         char[] verseAsChar = verse.toCharArray();
         for (int i = 0; i < verse.length(); i++) {
-            sum += verseAsChar[i] % 65 * pow(prime, i + 1, 1);
+            sum += verseAsChar[i] % 65 * Math.pow(prime, i + 1);
         }
         return sum % Integer.MAX_VALUE;
     }
@@ -55,7 +52,7 @@ class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println(pow(2, 3, 1));
+        System.out.println(Math.pow(2, 3));
         System.out.println(hash("alan da", 3));
         System.out.println(hash("alan da", 2));
         System.out.println(listToMap(Arrays.asList("salut",
