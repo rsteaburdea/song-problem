@@ -47,14 +47,13 @@ class Main {
                 maxNumberOfOccurrenceHashes.add(k);
             }
         });
-        for (Pair<Integer, Integer> pair : maxNumberOfOccurrenceHashes) {
-            for (String verse : verses) {
-                Integer firstHash = hash(verse, firstPrime);
-                Integer secondHash = hash(verse, secondPrime);
-                if (pair.getKey().equals(firstHash) || pair.getValue().equals(secondHash)) {
-                    System.out.println(verse);
-                    break;
-                }
+        for (String verse : verses) {
+            Integer firstHash = hash(verse, firstPrime);
+            Integer secondHash = hash(verse, secondPrime);
+            Pair<Integer, Integer> pair = new Pair<>(firstHash, secondHash);
+            if (maxNumberOfOccurrenceHashes.contains(pair)) {
+                System.out.println(verse);
+                maxNumberOfOccurrenceHashes.remove(pair);
             }
         }
     }
