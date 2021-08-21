@@ -59,5 +59,7 @@ class Main {
                 "ce faci", "salut", "ana", "ce faci", "salut", "hello", "ce faci", "ana"), 2, 3));
         printMaxNumberOfOccurrences(Arrays.asList("salut",
                 "ce faci", "salut", "ana", "ce faci", "salut", "hello", "ce faci", "ana"), 2, 3);
+        printMaxNumberOfOccurrences(Arrays.asList("salut",
+                "ce faci", "salut", "ana", "ce faci", "salut", "hello", "ce faci", "ana"), 3, 5);
     }
 }
