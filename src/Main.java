@@ -35,18 +35,19 @@ class Main {
     }
 
     // cred ca e mai eficient daca key e numarul de aparitii si valoarea o lista de perechi
-    private static void getMaxNumberOfOccurrences(List<String> verses, Integer firstPrime, Integer secondPrime) {
-        Pair<Map<Pair<Integer, Integer>, Integer>, Integer> mapAndMax =
-                listToMap(verses, firstPrime, secondPrime);
-        Map<Pair<Integer, Integer>, Integer> map = mapAndMax.getKey();
-        Integer maxNumberOfOccurrences = mapAndMax.getValue();
-        List<Pair<Integer, Integer>> maxesPairs = new ArrayList<>();
+    private static void printMaxNumberOfOccurrences(List<String> verses, Integer firstPrime, Integer secondPrime) {
+        Pair<Map<Pair<Integer, Integer>, Integer>, Integer> mapMaxPair = listToMap(verses, firstPrime, secondPrime);
+        Map<Pair<Integer, Integer>, Integer> map = mapMaxPair.getKey();
+        Integer maxNumberOfOccurrences = mapMaxPair.getValue();
+
+        List<Pair<Integer, Integer>> maxNumberOfOccurrenceHashes = new ArrayList<>();
+
         map.forEach((k, v) -> {
             if (v.equals(maxNumberOfOccurrences)) {
-                maxesPairs.add(k);
+                maxNumberOfOccurrenceHashes.add(k);
             }
         });
-        for (Pair<Integer, Integer> pair : maxesPairs) {
+        for (Pair<Integer, Integer> pair : maxNumberOfOccurrenceHashes) {
             for (String verse : verses) {
                 Integer firstHash = hash(verse, firstPrime);
                 Integer secondHash = hash(verse, secondPrime);
@@ -64,7 +65,7 @@ class Main {
         System.out.println(hash("alan da", 2));
         System.out.println(listToMap(Arrays.asList("salut",
                 "ce faci", "salut", "ana", "ce faci", "salut", "hello", "ce faci", "ana"), 2, 3));
-        getMaxNumberOfOccurrences(Arrays.asList("salut",
+        printMaxNumberOfOccurrences(Arrays.asList("salut",
                 "ce faci", "salut", "ana", "ce faci", "salut", "hello", "ce faci", "ana"), 2, 3);
     }
 }
