@@ -18,7 +18,7 @@ class Main {
                                                                                  Integer firstPrime,
                                                                                  Integer secondPrime) {
         Map<Pair<Integer, Integer>, Integer> result = new HashMap<>();
-        int max = 0;
+        int maxNumberOfOccurrences = 0;
         for (String verse : verses) {
             Integer firstHash = hash(verse, firstPrime);
             Integer secondHash = hash(verse, secondPrime);
@@ -26,12 +26,12 @@ class Main {
             if (result.containsKey(pair)) {
                 int incrementedValue = result.get(pair) + 1;
                 result.put(pair, incrementedValue);
-                max = Math.max(incrementedValue, max);
+                maxNumberOfOccurrences = Math.max(incrementedValue, maxNumberOfOccurrences);
             } else {
                 result.put(pair, 1);
             }
         }
-        return new Pair<>(result, max);
+        return new Pair<>(result, maxNumberOfOccurrences);
     }
 
     // cred ca e mai eficient daca key e numarul de aparitii si valoarea o lista de perechi
