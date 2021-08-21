@@ -45,13 +45,13 @@ class Main {
                 maxNumberOfOccurrenceHashes.add(k);
             }
         });
-        for (String verse : verses) {
+        verses.forEach(verse -> {
             Pair<Integer, Integer> pair = new Pair<>(hash(verse, firstPrime), hash(verse, secondPrime));
             if (maxNumberOfOccurrenceHashes.contains(pair)) {
                 System.out.println(verse);
                 maxNumberOfOccurrenceHashes.remove(pair);
             }
-        }
+        });
     }
 
     public static void main(String[] args) {
