@@ -3,22 +3,22 @@ import javafx.util.Pair;
 import java.util.*;
 
 class Main {
-    private static int hash(String verse, Integer prime) {
+    private static int hash(String lyric, Integer prime) {
         int sum = 0;
-        char[] verseAsChar = verse.toCharArray();
-        for (int i = 0; i < verse.length(); i++) {
-            sum += (verseAsChar[i] % 64 * Math.pow(prime, i)) % Integer.MAX_VALUE;
+        char[] lyricAsChar = lyric.toCharArray();
+        for (int i = 0; i < lyric.length(); i++) {
+            sum += (lyricAsChar[i] % 64 * Math.pow(prime, i)) % Integer.MAX_VALUE;
             sum %= Integer.MAX_VALUE;
         }
         return sum;
     }
-    private static Pair<Map<Pair<Integer, Integer>, Integer>, Integer> listToMap(List<String> verses,
+    private static Pair<Map<Pair<Integer, Integer>, Integer>, Integer> listToMap(List<String> lyrics,
                                                                                  Integer firstPrime,
                                                                                  Integer secondPrime) {
         Map<Pair<Integer, Integer>, Integer> result = new HashMap<>();
         int maxNumberOfOccurrences = 0;
-        for (String verse : verses) {
-            Pair<Integer, Integer> pair = new Pair<>(hash(verse, firstPrime), hash(verse, secondPrime));
+        for (String lyric : lyrics) {
+            Pair<Integer, Integer> pair = new Pair<>(hash(lyric, firstPrime), hash(lyric, secondPrime));
             if (!result.containsKey(pair)) {
                 result.put(pair, 1);
             } else {
@@ -31,8 +31,8 @@ class Main {
     }
 
     // cred ca e mai eficient daca key e numarul de aparitii si valoarea o lista de perechi
-    private static List<String> getMaxNumberOfOccurrences(List<String> verses, Integer firstPrime, Integer secondPrime) {
-        Pair<Map<Pair<Integer, Integer>, Integer>, Integer> mapMaxPair = listToMap(verses, firstPrime, secondPrime);
+    private static List<String> getMaxNumberOfOccurrences(List<String> lyrics, Integer firstPrime, Integer secondPrime) {
+        Pair<Map<Pair<Integer, Integer>, Integer>, Integer> mapMaxPair = listToMap(lyrics, firstPrime, secondPrime);
         Map<Pair<Integer, Integer>, Integer> map = mapMaxPair.getKey();
         Integer maxNumberOfOccurrences = mapMaxPair.getValue();
 
@@ -43,10 +43,10 @@ class Main {
                 maxNumberOfOccurrenceHashes.add(k);
             }
         });
-        verses.forEach(verse -> {
-            Pair<Integer, Integer> pair = new Pair<>(hash(verse, firstPrime), hash(verse, secondPrime));
+        lyrics.forEach(lyric -> {
+            Pair<Integer, Integer> pair = new Pair<>(hash(lyric, firstPrime), hash(lyric, secondPrime));
             if (maxNumberOfOccurrenceHashes.contains(pair)) {
-                result.add(verse);
+                result.add(lyric);
                 maxNumberOfOccurrenceHashes.remove(pair);
             }
         });
